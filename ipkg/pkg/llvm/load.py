@@ -3,11 +3,8 @@ from pathlib import Path
 
 import click
 
-from ...log import get_logger
 from ...utils.cache import export, open_cache
 from ...utils.run import run
-
-logger = get_logger()
 
 
 @click.command(name="load")
