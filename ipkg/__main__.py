@@ -1,8 +1,9 @@
 import logging
+from pathlib import Path
 
 import click
 
-from . import __version__
+from . import __version__, pkg
 from .cmd.cache import cmd_cache
 from .cmd.install import cmd_install
 from .cmd.list import cmd_list
@@ -23,12 +24,14 @@ from .log import install as log_install
     ),
     default="INFO",
 )
-def main(log_level: str):
+@click.option("--shell", default="bash")
+def main(log_level: str, shell: str | Path):
     log_level = log_level.upper()
     if log_level == "OFF":
         log_install(77)
     else:
         log_install(logging._nameToLevel[log_level])
+    pkg.SHELL = shell
 
 
 main.add_command(cmd=cmd_cache)
