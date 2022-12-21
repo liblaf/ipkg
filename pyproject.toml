@@ -6,7 +6,7 @@ requires = ["poetry-core"]
 name = "cz_conventional_commits"
 tag_format = "$version"
 version = "0.1.3"
-version_files = ["pyproject.toml:version"]
+version_files = ["ipkg/__init__.py:__version__", "pyproject.toml:version"]
 
 [tool.isort]
 profile = "black"
