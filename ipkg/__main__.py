@@ -8,6 +8,7 @@ from .cmd.install import cmd_install
 from .cmd.list import cmd_list
 from .cmd.load import cmd_load
 from .cmd.remove import cmd_remove
+from .cmd.shell_env import cmd_shell_env
 from .log import install as log_install
 
 
@@ -34,6 +35,7 @@ main.add_command(cmd=cmd_install)
 main.add_command(cmd=cmd_list)
 main.add_command(cmd=cmd_load)
 main.add_command(cmd=cmd_remove)
+main.add_command(cmd=cmd_shell_env)
 
 
 if __name__ == "__main__":

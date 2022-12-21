@@ -1,10 +1,9 @@
-#!/usr/bin/bash
-set -o errexit
-set -o nounset
-set -o pipefail
+import click
+from rich import print
 
-export IPKG="${IPKG:-"python entry_point.py"}"
-export IPKG_CACHE_DIR="${HOME}/.cache/ipkg"
+SHELL_ENV = """
+# export IPKG="${IPKG:-"python entry_point.py"}"
+# export IPKG_CACHE_DIR="${HOME}/.cache/ipkg"
 
 function ipkg() {
   local sha1="$(sha1sum <<< "${*}" | awk '{ print $1 }')"
@@ -19,5 +18,9 @@ function ipkg() {
     source "${cache_path}"
   fi
 }
+"""
 
-ipkg "${@}"
+
+@click.command(name="shell-env")
+def cmd_shell_env() -> None:
+    print(SHELL_ENV)
