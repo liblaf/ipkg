@@ -3,7 +3,7 @@ from pathlib import Path
 import click
 
 from ...utils.remove import remove
-from . import DEFAULT_PREFIX
+from . import DEFAULT_PREFIX, HELP_PREFIX
 
 
 @click.command(
@@ -15,6 +15,7 @@ from . import DEFAULT_PREFIX
     "--path",
     type=click.Path(exists=True, file_okay=False, dir_okay=True),
     default=DEFAULT_PREFIX,
+    help=HELP_PREFIX,
 )
 def main(prefix: str | Path) -> None:
     remove(prefix)

@@ -6,7 +6,7 @@ import click
 from ...utils.download import download
 from ...utils.run import run
 from .. import DOWNLOADS, SHELL
-from . import DEFAULT_PREFIX
+from . import DEFAULT_PREFIX, HELP_PREFIX
 
 FILENAME = f"Miniconda3-latest-{platform.system()}-{platform.machine()}.sh"
 
@@ -27,7 +27,7 @@ FILENAME = f"Miniconda3-latest-{platform.system()}-{platform.machine()}.sh"
     "--path",
     type=click.Path(),
     default=DEFAULT_PREFIX,
-    help="Installation prefix/path.",
+    help=HELP_PREFIX,
 )
 @click.option(
     "-f",
@@ -40,7 +40,7 @@ def main(batch: bool, prefix: str | Path, force: bool) -> None:
     filepath = DOWNLOADS / FILENAME
     url = f"https://repo.anaconda.com/miniconda/{FILENAME}"
     download(url=url, output=filepath)
-    args: list[str] = [SHELL, str(filepath)]
+    args: list[str] = [str(SHELL), str(filepath)]
     if batch:
         args.append("-b")
     if prefix:
