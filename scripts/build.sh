@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 set -o errexit
 set -o nounset
 set -o pipefail
@@ -22,8 +22,12 @@ function call() {
   "${@}"
 }
 
-call cd "$(git rev-parse --show-toplevel)"
+if [[ -n ${1-} ]]; then
+  workspace="${1}"
+else
+  workspace="$(git rev-parse --show-toplevel || echo "$(pwd)")"
+fi
 
+call cd "${workspace}"
 call poetry install --with build
-
 call pyinstaller --onefile --name ipkg --collect-all ipkg entry_point.py
