@@ -44,7 +44,7 @@ def unset(cache: typing.TextIO, names: list[str]) -> None:
         tee(f"unset {name}", file=cache)
 
 
-def func(cache: typing.TextIO, functions: list[ShellFunction]) -> None:
+def function(cache: typing.TextIO, functions: list[ShellFunction]) -> None:
     for shell_function in functions:
         tee(f"function {shell_function.name} {{", file=cache)
         for line in shell_function.body:
