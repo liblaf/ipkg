@@ -66,5 +66,5 @@ def install(level: int = logging.NOTSET):
     logging.root = logging.getLogger("main")
 
 
-def get_logger(name: str = "main", level: int = logging.NOTSET) -> Logger:
+def get_logger(name: str = "main") -> Logger:
     return typing.cast(Logger, logging.getLogger(name))
