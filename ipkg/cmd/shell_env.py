@@ -1,8 +1,9 @@
 import click
 from rich import print
+from rich.syntax import Syntax
 
 SHELL_ENV = """
-# export IPKG="${IPKG:-"python entry_point.py"}"
+# export IPKG="ipkg"
 # export IPKG_CACHE_DIR="${HOME}/.cache/ipkg"
 
 function ipkg() {
@@ -19,8 +20,9 @@ function ipkg() {
   fi
 }
 """
+SHELL_ENV = SHELL_ENV.strip()
 
 
 @click.command(name="shell-env")
 def cmd_shell_env() -> None:
-    print(SHELL_ENV)
+    print(Syntax(code=SHELL_ENV, lexer="shell"))
