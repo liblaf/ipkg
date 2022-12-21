@@ -16,7 +16,7 @@ class MyZipFile(ZipFile):
             zipinfo = member
         else:
             zipinfo = self.getinfo(member)
-        target_path = super()._extract_member(zipinfo, target_path, pwd)
+        target_path = super()._extract_member(zipinfo, target_path, pwd)  # type: ignore
         attr = (zipinfo.external_attr >> 16) & (S_IRWXU | S_IRWXG | S_IRWXO)
         if attr != 0:
             os.chmod(target_path, attr)
