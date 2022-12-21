@@ -29,7 +29,7 @@ def main(version: typing.Optional[str] = None) -> None:
     logo_path = OPT / NAME / "logo.png"
     download(url=LOGO_URL, output=logo_path)
     make_desktop_file(
-        slug="cfw",
+        slug=NAME,
         entry=DesktopEntry(
             Name="Clash for Windows",
             Exec=str(OPT / NAME / "cfw"),
