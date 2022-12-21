@@ -3,6 +3,7 @@ import logging
 import click
 
 from . import __version__
+from .cmd.cache import cmd_cache
 from .cmd.install import cmd_install
 from .cmd.list import cmd_list
 from .cmd.load import cmd_load
@@ -28,6 +29,7 @@ def main(log_level: str):
         log_install(logging._nameToLevel[log_level])
 
 
+main.add_command(cmd=cmd_cache)
 main.add_command(cmd=cmd_install)
 main.add_command(cmd=cmd_list)
 main.add_command(cmd=cmd_load)
