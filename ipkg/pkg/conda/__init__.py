@@ -2,7 +2,6 @@ from pathlib import Path
 
 from .. import OPT
 
-DEFAULT_PREFIX: Path = OPT / "conda"
-
-
+NAME = "conda"
+DEFAULT_PREFIX: Path = OPT / NAME
 HELP_PREFIX = "Installation prefix/path."

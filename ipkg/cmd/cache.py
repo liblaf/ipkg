@@ -6,12 +6,12 @@ from ..utils.remove import remove
 
 
 @click.command(name="clean")
-def cmd_cache_clean():
+def cmd_cache_clean() -> None:
     remove(CACHE_DIR)
 
 
 @click.command(name="prefix")
-def cmd_cache_prefix():
+def cmd_cache_prefix() -> None:
     print(CACHE_DIR)
 
 

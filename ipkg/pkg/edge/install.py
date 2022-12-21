@@ -7,7 +7,7 @@ from . import KEY_NAME, KEY_URL, NAME, SOURCES_LIST, SOURCES_LIST_PATH, TRUSTED_
 
 
 @click.command()
-def main():
+def main() -> None:
     key_path = DOWNLOADS / KEY_NAME
     download(url=KEY_URL, output=key_path)
     run("sudo", "gpg", "--dearmor", "--output", str(TRUSTED_KEY_PATH), str(key_path))
