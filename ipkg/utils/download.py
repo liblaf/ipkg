@@ -6,12 +6,11 @@ from httpie.core import main as https
 from ..log import get_logger
 from .confirm import confirm
 
-logger = get_logger()
-
 
 def download(
     url: str, output: str | Path, ask: bool = True, overwrite: bool = False
 ) -> None:
+    logger = get_logger()
     output = Path(output)
     if output.exists():
         if ask:

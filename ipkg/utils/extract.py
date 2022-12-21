@@ -7,8 +7,6 @@ from zipfile import ZipFile, ZipInfo
 from ..log import get_logger
 from .confirm import confirm
 
-logger = get_logger()
-
 
 class MyZipFile(ZipFile):
     def _extract_member(self, member: str | ZipInfo, target_path: str, pwd: str):
@@ -35,6 +33,7 @@ shutil.register_unpack_format(name="zip", extensions=[".zip"], function=unzip)
 def extract(
     src: str | Path, dst: str | Path, ask: bool = True, overwrite: bool = True
 ) -> None:
+    logger = get_logger()
     dst = Path(dst)
     if dst.exists():
         if ask:

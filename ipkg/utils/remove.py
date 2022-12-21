@@ -5,10 +5,9 @@ from pathlib import Path
 from ..log import get_logger
 from .confirm import confirm
 
-logger = get_logger()
-
 
 def remove(path: str | Path, ask: bool = True, default: bool = True) -> None:
+    logger = get_logger()
     path = Path(path)
     message = f"Remove: {path}"
     if path.is_file() or path.is_dir():
