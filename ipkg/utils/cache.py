@@ -39,6 +39,11 @@ def export(cache: typing.TextIO, env: dict[str, str]) -> None:
         tee(f'export {name}="{value}"', file=cache)
 
 
+def unset(cache: typing.TextIO, names: list[str]) -> None:
+    for name in names:
+        tee(f"unset {name}", file=cache)
+
+
 def func(cache: typing.TextIO, functions: list[ShellFunction]) -> None:
     for shell_function in functions:
         tee(f"function {shell_function.name} {{", file=cache)
@@ -47,11 +52,11 @@ def func(cache: typing.TextIO, functions: list[ShellFunction]) -> None:
         tee("}", file=cache)
 
 
-def unset(cache: typing.TextIO, names: list[str]) -> None:
-    for name in names:
-        tee(f"unset {name}", file=cache)
-
-
 def unset_function(cache: typing.TextIO, names: list[str]) -> None:
     for name in names:
         tee(f"unset -f {name}", file=cache)
+
+
+def exec(cache: typing.TextIO, commands: list[list[str]]) -> None:
+    for args in commands:
+        tee(" ".join(args), file=cache)
