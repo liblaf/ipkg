@@ -54,4 +54,4 @@ main.add_command(cmd=cmd_unload)
 
 
 if __name__ == "__main__":
-    main()
+    main(prog_name=main.name)
