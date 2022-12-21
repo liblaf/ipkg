@@ -7,7 +7,7 @@ from ...utils.cache import export, open_cache
 from ...utils.run import run
 
 
-@click.command(name="load")
+@click.command()
 @click.option(
     "--llvm-home",
     type=click.Path(exists=True, file_okay=False, dir_okay=True),
