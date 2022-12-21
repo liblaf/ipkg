@@ -21,5 +21,5 @@ def cmd_list(pkg: str = ""):
     pkgs: list[str] = list()
     for module in pkgutil.iter_modules(path=pkg_spec.submodule_search_locations):
         pkgs.append(package_name(module.name))
-    pkgs = list(set(pkgs))
+    pkgs = sorted(list(set(pkgs)))
     print(Columns(pkgs, expand=False, equal=True))
