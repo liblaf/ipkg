@@ -24,14 +24,24 @@ from .log import install as log_install
     ),
     default="INFO",
 )
-@click.option("--shell", default="bash")
-def main(log_level: str, shell: str | Path):
+@click.option(
+    "--downloads",
+    type=click.Path(exists=True, file_okay=False, dir_okay=True),
+    default=Path.home() / "Downloads",
+)
+@click.option(
+    "--shell",
+    type=click.Path(exists=True, file_okay=True, dir_okay=False, executable=True),
+    default="/bin/bash",
+)
+def main(log_level: str, shell: str | Path, downloads: str | Path):
     log_level = log_level.upper()
     if log_level == "OFF":
         log_install(77)
     else:
         log_install(logging._nameToLevel[log_level])
-    pkg.SHELL = shell
+    pkg.DOWNLOADS = Path(downloads)
+    pkg.SHELL = Path(shell)
 
 
 main.add_command(cmd=cmd_cache)
