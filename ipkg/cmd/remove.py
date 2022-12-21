@@ -3,7 +3,6 @@ import importlib
 import click
 
 from ..utils.name import module_name
-from ..utils.prog_name import get_prog_name
 
 
 @click.command(name="remove")
@@ -16,8 +15,8 @@ def cmd_remove(ctx: click.Context, pkg: str, args: tuple[str]):
     cmd: click.Command = module.main
     cmd.invoke(
         cmd.make_context(
-            info_name=f"{get_prog_name()} {ctx.info_name} {pkg} --",
+            info_name=f"{ctx.info_name} {pkg} --",
             args=list(args),
-            show_default=ctx.show_default,
+            parent=ctx.parent,
         )
     )
