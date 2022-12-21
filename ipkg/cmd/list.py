@@ -5,10 +5,7 @@ import click
 from rich import print
 from rich.columns import Columns
 
-from ..log import get_logger
 from ..utils.name import package_name
-
-logger = get_logger()
 
 
 @click.command(name="list")

@@ -33,11 +33,11 @@ def install_log_level(level: int, name: str):
 
 
 def install(level: int = logging.NOTSET):
-    logging.setLoggerClass(Logger)
     install_log_level(level=TIPS, name="TIPS")
     install_log_level(level=SUCCESS, name="SUCCESS")
     install_log_level(level=EXECUTE, name="EXECUTE")
     install_log_level(level=SKIPPED, name="SKIPPED")
+    logging.setLoggerClass(Logger)
     if level > logging.CRITICAL:
         get_logger().disabled = True
     else:
