@@ -8,21 +8,36 @@ TIPS = SUCCESS + 1
 
 
 class Logger(logging.Logger):
-    def skipped(self, msg, *args, **kwargs):
-        if self.isEnabledFor(SKIPPED):
-            self._log(SKIPPED, "[logging.level.skipped]" + msg + "[/]", args, **kwargs)
+    @staticmethod
+    def escape(message: str) -> str:
+        return message.replace(r"[", r"\[")
 
-    def execute(self, msg, *args, **kwargs):
-        if self.isEnabledFor(EXECUTE):
-            self._log(EXECUTE, "[logging.level.execute]" + msg + "[/]", args, **kwargs)
+    def my_log(self, level: int, style: str, message: str, *args, **kwargs) -> None:
+        message = self.escape(message)
+        if self.isEnabledFor(level=level):
+            self._log(
+                level=level, msg=f"[{style}]" + message + "[/]", args=args, **kwargs
+            )
 
-    def success(self, msg, *args, **kwargs):
-        if self.isEnabledFor(SUCCESS):
-            self._log(SUCCESS, "[logging.level.success]" + msg + "[/]", args, **kwargs)
+    def skipped(self, msg: str, *args, **kwargs):
+        self.my_log(
+            level=SKIPPED, style="logging.level.skipped", message=msg, *args, **kwargs
+        )
 
-    def tips(self, msg, *args, **kwargs):
-        if self.isEnabledFor(TIPS):
-            self._log(TIPS, "[logging.level.tips]" + msg + "[/]", args, **kwargs)
+    def execute(self, msg: str, *args, **kwargs):
+        self.my_log(
+            level=EXECUTE, style="logging.level.execute", message=msg, *args, **kwargs
+        )
+
+    def success(self, msg: str, *args, **kwargs):
+        self.my_log(
+            level=SUCCESS, style="logging.level.success", message=msg, *args, **kwargs
+        )
+
+    def tips(self, msg: str, *args, **kwargs):
+        self.my_log(
+            level=TIPS, style="logging.level.tips", message=msg, *args, **kwargs
+        )
 
 
 def install_log_level(level: int, name: str):
