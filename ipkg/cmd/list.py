@@ -39,7 +39,7 @@ def cmd_list(tree: bool, pkg: str):
     if pkg:
         spec = importlib.util.find_spec(name=f"ipkg.pkg.{pkg}")
         if not spec:
-            raise LookupError(f'Package "{pkg}" not found!')
+            raise LookupError(f'Package "{pkg}" Not Found!')
     else:
         spec = importlib.util.find_spec(name="ipkg.pkg")
     assert spec
