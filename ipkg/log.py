@@ -63,7 +63,7 @@ def install(level: int = logging.NOTSET):
             format="%(message)s",
             handlers=[RichHandler(console=console, markup=True)],
         )
-    logging.root = logging.getLogger("main")
+    logging.root = get_logger()
 
 
 def get_logger(name: str = "main") -> Logger:

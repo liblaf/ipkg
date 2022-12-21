@@ -21,5 +21,5 @@ def download(
             logger.skipped(f"Download: {url} -> {output}")
             return
     os.makedirs(name=output.parent, exist_ok=True)
-    https(args=["https", "--body", "--download", "--output", str(output), url])
+    https(args=["https", "--body", "--output", str(output), "--download", url])
     logger.success(f"Download: {url} -> {output}")
