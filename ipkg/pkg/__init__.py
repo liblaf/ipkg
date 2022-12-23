@@ -1,6 +1,7 @@
 from pathlib import Path
 
 DOWNLOADS: Path = Path.home() / "Downloads"
-OPT: Path = Path.home() / ".local" / "opt"
 SHELL: Path = Path("/bin/bash")
-TMP: Path = Path("/tmp")
+LOCAL: Path = Path.home() / ".local"
+BIN: Path = LOCAL / "bin"
+OPT: Path = LOCAL / "opt"
