@@ -11,25 +11,26 @@ from ..utils.name import package_name
 
 
 def get_list(spec: ModuleSpec) -> list[str]:
-    names: list[str] = list()
+    names: set[str] = set()
     for module in pkgutil.iter_modules(path=spec.submodule_search_locations):
-        names.append(package_name(mod_name=module.name))
-    return names
+        names.add(package_name(mod_name=module.name))
+    return list(names)
 
 
 def get_tree(spec: ModuleSpec) -> Tree:
-    names: Tree = Tree(spec.name.removeprefix("ipkg."))
+    tree: Tree = Tree(spec.name.split(sep=".")[-1])
+    names: set[str] = set()
     for module in pkgutil.iter_modules(path=spec.submodule_search_locations):
-        tree_node = names.add(package_name(mod_name=module.name))
-        if not module.ispkg:
+        if module.name in names:
             continue
-        sub_spec = importlib.util.find_spec(name=f"{spec.name}.{module.name}")
-        assert sub_spec
-        for sub_module in pkgutil.iter_modules(
-            path=sub_spec.submodule_search_locations
-        ):
-            tree_node.add(package_name(sub_module.name))
-    return names
+        names.add(package_name(mod_name=module.name))
+        if module.ispkg:
+            sub_spec = importlib.util.find_spec(name=f"{spec.name}.{module.name}")
+            assert sub_spec
+            tree.add(get_tree(spec=sub_spec))
+        else:
+            tree.add(module.name)
+    return tree
 
 
 @click.command(name="list")
