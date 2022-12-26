@@ -1,3 +1,20 @@
+## 0.1.5 (2022-12-26)
+
+### Fix
+
+- **pkg.android_studio**: add cmd postinstall
+- **pkg.android_studio**: new package
+- **cmd.load**: add new option --dry-run
+- **pkg.brew**: new package
+- **pkg.reserves_lib_tsinghua_downloader**: new package
+- **cmd.list**: duplicate packages
+- **pkg.code**: add extensions
+- **pkg.typora**: new package
+- **cmd.list**: add --tree option
+- **pkg.zotero**: new package
+- **pkg.cfw**: add remove command
+- **pkg.cfw**: new package
+
 ## 0.1.4 (2022-12-21)
 
 ### Fix
