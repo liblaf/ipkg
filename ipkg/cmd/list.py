@@ -23,13 +23,13 @@ def get_tree(spec: ModuleSpec) -> Tree:
     for module in pkgutil.iter_modules(path=spec.submodule_search_locations):
         if module.name in names:
             continue
-        names.add(package_name(mod_name=module.name))
+        names.add(module.name)
         if module.ispkg:
             sub_spec = importlib.util.find_spec(name=f"{spec.name}.{module.name}")
             assert sub_spec
             tree.add(get_tree(spec=sub_spec))
         else:
-            tree.add(module.name)
+            tree.add(package_name(mod_name=module.name))
     return tree
 
 
