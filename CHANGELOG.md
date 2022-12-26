@@ -1,3 +1,12 @@
+## 0.1.6 (2022-12-26)
+
+### Fix
+
+- **cmd.shell-env**: default CACHE_DIR
+- **pkg.virtualbox**: new package
+- **cmd.shell-env**: fix ${IPKG}
+- **pkg.docker**: new package
+
 ## 0.1.5 (2022-12-26)
 
 ### Fix
