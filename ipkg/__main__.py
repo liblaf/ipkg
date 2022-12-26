@@ -8,7 +8,7 @@ from .cmd.cache import cmd_cache
 from .cmd.install import cmd_install
 from .cmd.list import cmd_list
 from .cmd.load import cmd_load
-from .cmd.postinstall import cmd_postinstall
+from .cmd.post_install import cmd_post_install
 from .cmd.remove import cmd_remove
 from .cmd.shell_env import cmd_shell_env
 from .cmd.unload import cmd_unload
@@ -49,7 +49,7 @@ main.add_command(cmd=cmd_cache)
 main.add_command(cmd=cmd_install)
 main.add_command(cmd=cmd_list)
 main.add_command(cmd=cmd_load)
-main.add_command(cmd=cmd_postinstall)
+main.add_command(cmd=cmd_post_install)
 main.add_command(cmd=cmd_remove)
 main.add_command(cmd=cmd_shell_env)
 main.add_command(cmd=cmd_unload)

@@ -3,7 +3,7 @@ from rich import print
 from rich.syntax import Syntax
 
 SHELL_ENV = """
-# export IPKG="ipkg"
+# export IPKG="command ipkg"
 # export IPKG_CACHE_DIR="${HOME}/.cache/ipkg"
 
 function ipkg() {
@@ -13,7 +13,7 @@ function ipkg() {
     local cache_hit=true
   fi
   if [[ ${cache_hit:-"false"} != "true" ]]; then
-    ${IPKG:-"ipkg"} "${@}"
+    ${IPKG:-command ipkg} "${@}"
   fi
   if [[ -f ${cache_path} ]]; then
     source "${cache_path}"
