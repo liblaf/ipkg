@@ -18,7 +18,7 @@ def get_list(spec: ModuleSpec) -> list[str]:
 
 
 def get_tree(spec: ModuleSpec) -> Tree:
-    tree: Tree = Tree(spec.name.split(sep=".")[-1])
+    tree: Tree = Tree(package_name(spec.name.split(sep=".")[-1]))
     names: set[str] = set()
     for module in pkgutil.iter_modules(path=spec.submodule_search_locations):
         if module.name in names:

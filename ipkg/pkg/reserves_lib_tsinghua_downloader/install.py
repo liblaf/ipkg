@@ -25,5 +25,6 @@ def main():
     replace(src=tmpdir / "downloader", dst=BIN / NAME)
     mode = os.stat(path=BIN / NAME).st_mode
     mode |= (mode & 0o444) >> 2
-    os.chmod(path=BIN / NAME, mode=mode)
+    exec: Path = BIN / NAME
+    exec.chmod(mode=mode)
     remove(tmpdir)

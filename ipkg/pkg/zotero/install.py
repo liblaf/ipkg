@@ -7,6 +7,7 @@ import click
 from ...utils.download import download
 from ...utils.extract import extract
 from ...utils.link import link
+from ...utils.remove import remove
 from ...utils.replace import replace
 from ...utils.run import run
 from ...utils.ubuntu import DESKTOP_FILE_INSTALL_DIR
@@ -34,7 +35,9 @@ def main() -> None:
     filepath: Path = DOWNLOADS / filename
     download(url=url, output=filepath)
     extract(src=filepath, dst=OPT)
-    replace(src=OPT / f"{NAME.title()}_{query['platform']}", dst=OPT / NAME)
+    tmpdir: Path = OPT / f"{NAME.title()}_{query['platform']}"
+    replace(src=tmpdir, dst=OPT / NAME)
+    remove(path=tmpdir)
     run(str(OPT / NAME / "set_launcher_icon"))
     desktop_filename = f"{NAME}.desktop"
     link(
