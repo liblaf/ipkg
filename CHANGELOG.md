@@ -1,3 +1,10 @@
+## 0.1.7 (2022-12-29)
+
+### Fix
+
+- **cmd.list**: fix duplicate names
+- **pkg.gh**: new package
+
 ## 0.1.6 (2022-12-26)
 
 ### Fix
