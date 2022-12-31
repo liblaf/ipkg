@@ -14,6 +14,7 @@ EXTENSIONS: list[str] = [
     "eamodio.gitlens",
     "esbenp.prettier-vscode",
     "foxundermoon.shell-format",
+    "Gruntfuggly.todo-tree",
     "James-Yu.latex-workshop",
     "llvm-vs-code-extensions.vscode-clangd",
     "ms-python.isort",
@@ -24,6 +25,5 @@ EXTENSIONS: list[str] = [
     "streetsidesoftware.code-spell-checker",
     "tamasfe.even-better-toml",
     "WakaTime.vscode-wakatime",
-    "wayou.vscode-todo-highlight",
     "wwm.better-align",
 ]
