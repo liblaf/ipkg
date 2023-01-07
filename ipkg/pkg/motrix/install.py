@@ -1,3 +1,4 @@
+import os
 from pathlib import Path
 
 import click
@@ -12,6 +13,7 @@ from . import DOWNLOAD_URL, ICON_URL, NAME
 def main() -> None:
     exec: Path = OPT / NAME / (NAME + ".AppImage")
     download(url=DOWNLOAD_URL, output=exec)
+    os.chmod(path=exec, mode=0o775)
     icon_path: Path = OPT / NAME / "icon.png"
     download(url=ICON_URL, output=icon_path)
     make_desktop_file(
