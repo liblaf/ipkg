@@ -5,7 +5,7 @@ requires = ["poetry-core"]
 [tool.commitizen]
 name = "cz_conventional_commits"
 tag_format = "$version"
-version = "0.1.7"
+version = "0.1.8"
 version_files = ["ipkg/__init__.py:__version__", "pyproject.toml:version"]
 
 [tool.isort]
@@ -20,7 +20,7 @@ license = "MIT"
 name = "ipkg"
 readme = "README.md"
 repository = "https://github.com/liblaf/ipkg"
-version = "0.1.7"
+version = "0.1.8"
 
 [tool.poetry.dependencies]
 click = "^8.1.3"

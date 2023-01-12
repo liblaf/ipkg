@@ -1,3 +1,12 @@
+## 0.1.8 (2023-01-12)
+
+### Fix
+
+- **pkg.motrix**: fix permission bits
+- **pkg.motrix**: new package
+- **pkg.obs**: new package
+- **pkg.code**: replace TODO extension
+
 ## 0.1.7 (2022-12-29)
 
 ### Fix
