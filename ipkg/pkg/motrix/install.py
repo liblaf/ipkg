@@ -2,9 +2,9 @@ import os
 from pathlib import Path
 
 import click
+from ishutils.common.download import download
+from ishutils.ubuntu.desktop import DesktopEntry, make_desktop_file
 
-from ...utils.download import download
-from ...utils.ubuntu.desktop import DesktopEntry, make_desktop_file
 from .. import OPT
 from . import DOWNLOAD_URL, ICON_URL, NAME
 

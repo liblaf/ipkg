@@ -1,13 +1,12 @@
 import os
-import tempfile
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import click
+from ishutils.common.download import download
+from ishutils.common.extract import extract
+from ishutils.common.replace import replace
 
-from ...utils.download import download
-from ...utils.extract import extract
-from ...utils.remove import remove
-from ...utils.replace import replace
 from .. import BIN, DOWNLOADS
 from . import NAME
 
@@ -20,11 +19,10 @@ def main():
         url="https://github.com/libthu/reserves-lib-tsinghua-downloader/releases/latest/download/downloader-ubuntu-latest-py3.9.zip",
         output=filepath,
     )
-    tmpdir: Path = Path(tempfile.mkdtemp())
-    extract(src=filepath, dst=tmpdir)
-    replace(src=tmpdir / "downloader", dst=BIN / NAME)
-    mode = os.stat(path=BIN / NAME).st_mode
-    mode |= (mode & 0o444) >> 2
-    exec: Path = BIN / NAME
-    exec.chmod(mode=mode)
-    remove(tmpdir)
+    with TemporaryDirectory() as tmp_dir:
+        extract(src=filepath, dst=tmp_dir)
+        replace(src=Path(tmp_dir) / "downloader", dst=BIN / NAME)
+        mode = os.stat(path=BIN / NAME).st_mode
+        mode |= (mode & 0o444) >> 2
+        exec: Path = BIN / NAME
+        exec.chmod(mode=mode)

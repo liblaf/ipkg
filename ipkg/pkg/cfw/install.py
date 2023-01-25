@@ -1,14 +1,14 @@
 import typing
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import click
 import requests
+from ishutils.common.download import download
+from ishutils.common.extract import extract
+from ishutils.common.replace import replace
+from ishutils.ubuntu.desktop import DesktopEntry, make_desktop_file
 
-from ...utils.download import download
-from ...utils.extract import extract
-from ...utils.replace import replace
-from ...utils.tmp import TmpDir
-from ...utils.ubuntu.desktop import DesktopEntry, make_desktop_file
 from .. import DOWNLOADS, OPT
 from . import DOWNLOAD_URL, LOGO_URL, NAME, RELEASE_API
 
@@ -22,9 +22,11 @@ def main(version: typing.Optional[str] = None) -> None:
     url: str = f"{DOWNLOAD_URL}/{version}/{filename}"
     filepath: Path = DOWNLOADS / filename
     download(url=url, output=filepath)
-    with TmpDir() as tmp_dir:
+    with TemporaryDirectory() as tmp_dir:
         extract(src=filepath, dst=tmp_dir)
-        replace(src=tmp_dir / f"Clash for Windows-{version}-x64-linux", dst=OPT / NAME)
+        replace(
+            src=Path(tmp_dir) / f"Clash for Windows-{version}-x64-linux", dst=OPT / NAME
+        )
     logo_path = OPT / NAME / "logo.png"
     download(url=LOGO_URL, output=logo_path)
     make_desktop_file(

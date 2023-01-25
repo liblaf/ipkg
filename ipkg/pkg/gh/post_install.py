@@ -1,9 +1,8 @@
 import click
-
-from ...utils.run import run
+from ishutils.common.run import run
 
 
 @click.command()
 def main() -> None:
-    run("gh", "auth", "login")
-    run("gh", "auth", "setup-git")
+    run(args=["gh", "auth", "login"])
+    run(args=["gh", "auth", "setup-git"])

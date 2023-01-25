@@ -7,7 +7,7 @@ from rich import print
 from rich.columns import Columns
 from rich.tree import Tree
 
-from ..utils.name import package_name
+from ..utils.text import package_name
 
 
 def get_list(spec: ModuleSpec) -> list[str]:
@@ -36,7 +36,7 @@ def get_tree(spec: ModuleSpec) -> Tree:
 @click.command(name="list")
 @click.option("--tree", is_flag=True)
 @click.argument("pkg", required=False, default="")
-def cmd_list(tree: bool, pkg: str):
+def main(tree: bool, pkg: str):
     if pkg:
         spec = importlib.util.find_spec(name=f"ipkg.pkg.{pkg}")
         if not spec:

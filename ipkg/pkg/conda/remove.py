@@ -1,8 +1,8 @@
 from pathlib import Path
 
 import click
+from ishutils.common.remove import remove
 
-from ...utils.remove import remove
 from . import DEFAULT_PREFIX, HELP_PREFIX
 
 

@@ -3,9 +3,9 @@ import tempfile
 from pathlib import Path
 
 import click
+from ishutils.common.remove import remove
+from ishutils.common.run import run
 
-from ...utils.remove import remove
-from ...utils.run import run
 from .. import SHELL
 from . import (
     HOMEBREW_BOTTLE_DOMAIN,
@@ -18,9 +18,18 @@ from . import (
 @click.command()
 def main():
     tmpdir: Path = Path(tempfile.mkdtemp())
-    run("git", "clone", "--depth", "1", HOMEBREW_BREW_INSTALL_GIT_REMOTE, str(tmpdir))
+    run(
+        args=[
+            "git",
+            "clone",
+            "--depth",
+            "1",
+            HOMEBREW_BREW_INSTALL_GIT_REMOTE,
+            tmpdir,
+        ]
+    )
     os.environ["HOMEBREW_BREW_GIT_REMOTE"] = HOMEBREW_BREW_GIT_REMOTE
     os.environ["HOMEBREW_CORE_GIT_REMOTE"] = HOMEBREW_CORE_GIT_REMOTE
     os.environ["HOMEBREW_BOTTLE_DOMAIN"] = HOMEBREW_BOTTLE_DOMAIN
-    run(str(SHELL), str(tmpdir / "install.sh"))
+    run(args=[SHELL, tmpdir / "install.sh"])
     remove(tmpdir)

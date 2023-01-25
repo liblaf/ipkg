@@ -1,8 +1,8 @@
 from pathlib import Path
 
 import click
+from ishutils.common.link import link
 
-from ...utils.link import link
 from .. import BIN
 
 

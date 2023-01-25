@@ -3,14 +3,14 @@ import urllib.parse
 from pathlib import Path
 
 import click
+from ishutils.common.download import download
+from ishutils.common.extract import extract
+from ishutils.common.link import link
+from ishutils.common.remove import remove
+from ishutils.common.replace import replace
+from ishutils.common.run import run
+from ishutils.ubuntu import DESKTOP_FILE_INSTALL_DIR
 
-from ...utils.download import download
-from ...utils.extract import extract
-from ...utils.link import link
-from ...utils.remove import remove
-from ...utils.replace import replace
-from ...utils.run import run
-from ...utils.ubuntu import DESKTOP_FILE_INSTALL_DIR
 from .. import DOWNLOADS, OPT
 from . import DOWNLOAD_URL, NAME
 
@@ -38,7 +38,7 @@ def main() -> None:
     tmpdir: Path = OPT / f"{NAME.title()}_{query['platform']}"
     replace(src=tmpdir, dst=OPT / NAME)
     remove(path=tmpdir)
-    run(str(OPT / NAME / "set_launcher_icon"))
+    run(args=[OPT / NAME / "set_launcher_icon"])
     desktop_filename = f"{NAME}.desktop"
     link(
         src=OPT / NAME / desktop_filename,

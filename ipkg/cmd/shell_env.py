@@ -23,5 +23,5 @@ SHELL_ENV = SHELL_ENV.strip()
 
 
 @click.command(name="shell-env")
-def cmd_shell_env() -> None:
+def main() -> None:
     print(Syntax(code=SHELL_ENV, lexer="shell"))

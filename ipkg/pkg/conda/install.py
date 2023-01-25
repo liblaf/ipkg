@@ -2,9 +2,9 @@ import platform
 from pathlib import Path
 
 import click
+from ishutils.common.download import download
+from ishutils.common.run import run
 
-from ...utils.download import download
-from ...utils.run import run
 from .. import DOWNLOADS, SHELL
 from . import DEFAULT_PREFIX, HELP_PREFIX
 
@@ -47,4 +47,4 @@ def main(batch: bool, prefix: str | Path, force: bool) -> None:
         args += ["-p", str(prefix)]
     if force:
         args.append("-f")
-    run(*args)
+    run(args=args)

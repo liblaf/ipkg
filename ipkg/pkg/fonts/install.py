@@ -3,10 +3,10 @@ from pathlib import Path
 
 import click
 import requests
+from ishutils.common.download import download
+from ishutils.common.extract import extract
+from ishutils.common.run import run
 
-from ...utils.download import download
-from ...utils.extract import extract
-from ...utils.run import run
 from .. import DOWNLOADS
 from . import FONT_DIR
 
@@ -55,4 +55,4 @@ def main(font_dir: str | Path) -> None:
     install_meslolgs_nf(font_dir=font_dir)
     install_fira_code(font_dir=font_dir)
     install_noto_sans_cjk_sc(font_dir=font_dir)
-    run("fc-cache", "--force")
+    run(args=["fc-cache", "--force"])

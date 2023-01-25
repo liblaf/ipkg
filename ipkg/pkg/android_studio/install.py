@@ -1,12 +1,12 @@
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 import click
+from ishutils.common.download import download
+from ishutils.common.extract import extract
+from ishutils.common.replace import replace
+from ishutils.ubuntu.desktop import DesktopEntry, make_desktop_file
 
-from ...utils.download import download
-from ...utils.extract import extract
-from ...utils.replace import replace
-from ...utils.tmp import TmpDir
-from ...utils.ubuntu.desktop import DesktopEntry, make_desktop_file
 from .. import DOWNLOADS, OPT
 from . import NAME, VERSION_TO_FILENAME
 
@@ -23,10 +23,10 @@ def main(version: str) -> None:
     url: str = f"https://redirector.gvt1.com/edgedl/android/studio/ide-zips/{version}/{filename}"
     filepath: Path = DOWNLOADS / filename
     download(url=url, output=DOWNLOADS / filename)
-    with TmpDir() as tmp_dir:
+    with TemporaryDirectory() as tmp_dir:
         extract(src=filepath, dst=tmp_dir)
         dst: Path = OPT / NAME / version
-        replace(src=tmp_dir / NAME, dst=dst)
+        replace(src=Path(tmp_dir) / NAME, dst=dst)
     make_desktop_file(
         slug=f"{NAME}-{version}",
         entry=DesktopEntry(

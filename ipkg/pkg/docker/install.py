@@ -1,9 +1,9 @@
 from pathlib import Path
 
 import click
+from ishutils.common.download import download
+from ishutils.common.run import run
 
-from ...utils.download import download
-from ...utils.run import run
 from .. import DOWNLOADS
 from . import GET_DOCKER_URL
 
@@ -16,6 +16,6 @@ def main() -> None:
     filename: str = "get-docker.sh"
     filepath: Path = DOWNLOADS / filename
     download(url=url, output=filepath)
-    run("sudo", "bash", str(filepath))
-    run("sudo", "apt", "install", "uidmap")
-    run("dockerd-rootless-setuptool.sh", "install")
+    run(args=["sudo", "bash", filepath])
+    run(args=["sudo", "apt", "install", "uidmap"])
+    run(args=["dockerd-rootless-setuptool.sh", "install"])

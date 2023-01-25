@@ -1,9 +1,9 @@
 from pathlib import Path
 
 import click
+from ishutils.common.remove import remove
+from ishutils.common.run import run
 
-from ...utils.remove import remove
-from ...utils.run import run
 from . import FONT_DIR
 
 
@@ -11,4 +11,4 @@ from . import FONT_DIR
 @click.option("--font-dir", type=click.Path(), default=FONT_DIR)
 def main(font_dir: str | Path) -> None:
     remove(path=font_dir)
-    run("fc-cache", "--force")
+    run(args=["fc-cache", "--force"])

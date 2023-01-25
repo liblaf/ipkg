@@ -1,7 +1,7 @@
 import click
+from ishutils.common.remove import remove
+from ishutils.ubuntu.desktop import DESKTOP_FILE_INSTALL_DIR
 
-from ...utils.remove import remove
-from ...utils.ubuntu.desktop import DESKTOP_FILE_INSTALL_DIR
 from .. import OPT
 from . import NAME
 

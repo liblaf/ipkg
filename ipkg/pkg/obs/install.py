@@ -1,10 +1,9 @@
 import click
-
-from ...utils.run import run
+from ishutils.common.run import run
 
 
 @click.command()
 def main() -> None:
-    run("sudo", "add-apt-repository", "ppa:obsproject/obs-studio")
-    run("sudo", "apt", "update")
-    run("sudo", "apt", "install", "ffmpeg", "obs-studio")
+    run(args=["sudo", "add-apt-repository", "ppa:obsproject/obs-studio"])
+    run(args=["sudo", "apt", "update"])
+    run(args=["sudo", "apt", "install", "ffmpeg", "obs-studio"])

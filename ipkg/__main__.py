@@ -2,17 +2,17 @@ import logging
 from pathlib import Path
 
 import click
+from ishutils.logging import install as logging_install
 
 from . import __version__, pkg
-from .cmd.cache import cmd_cache
-from .cmd.install import cmd_install
-from .cmd.list import cmd_list
-from .cmd.load import cmd_load
-from .cmd.post_install import cmd_post_install
-from .cmd.remove import cmd_remove
-from .cmd.shell_env import cmd_shell_env
-from .cmd.unload import cmd_unload
-from .log import install as log_install
+from .cmd.cache import main as cmd_cache
+from .cmd.install import main as cmd_install
+from .cmd.list import main as cmd_list
+from .cmd.load import main as cmd_load
+from .cmd.post_install import main as cmd_post_install
+from .cmd.remove import main as cmd_remove
+from .cmd.shell_env import main as cmd_shell_env
+from .cmd.unload import main as cmd_unload
 
 
 @click.group(name="ipkg", context_settings={"show_default": True})
@@ -20,7 +20,7 @@ from .log import install as log_install
 @click.option(
     "--log-level",
     type=click.Choice(
-        choices=["OFF", "CRITICAL", "ERROR", "WARN", "INFO", "DEBUG", "NOTSET"],
+        choices=list(logging.getLevelNamesMapping().keys()),
         case_sensitive=False,
     ),
     default="INFO",
@@ -37,10 +37,7 @@ from .log import install as log_install
 )
 def main(log_level: str, shell: str | Path, downloads: str | Path):
     log_level = log_level.upper()
-    if log_level == "OFF":
-        log_install(77)
-    else:
-        log_install(logging._nameToLevel[log_level])
+    logging_install(level=logging.getLevelName(level=log_level))
     pkg.DOWNLOADS = Path(downloads)
     pkg.SHELL = Path(shell)
 

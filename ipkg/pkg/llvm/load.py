@@ -2,9 +2,9 @@ import typing
 from pathlib import Path
 
 import click
+from ishutils.common.run import run
 
 from ...utils.cache import export, open_cache
-from ...utils.run import run
 
 
 @click.command()
@@ -20,7 +20,7 @@ def main(llvm_home: typing.Optional[str | Path] = None) -> None:
             llvm_config = Path(llvm_home) / "bin" / "llvm-config"
         else:
             llvm_config = "llvm-config"
-        completed_process = run(str(llvm_config), "--libdir", capture_output=True)
+        completed_process = run(args=[llvm_config, "--libdir"], capture_output=True)
         lib_dir = str(completed_process.stdout, encoding="utf-8").strip()
         env["LD_LIBRARY_PATH"] = lib_dir + ":"
         export(cache=cache, env=env)
