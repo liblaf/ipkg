@@ -2,11 +2,10 @@
 
 ## [0.1.9](https://github.com/liblaf/ipkg/compare/0.1.8...v0.1.9) (2023-01-25)
 
-
 ### Bug Fixes
 
-* migrate to `ishutils` ([120297c](https://github.com/liblaf/ipkg/commit/120297cbccf29d92ce3c8fe67d9142d1dbfb371a))
-* use sub-command instead of importlib ([1d1bdb6](https://github.com/liblaf/ipkg/commit/1d1bdb63893a19577e83ec3dd85c4e8ca55ef7f1))
+- migrate to `ishutils` ([120297c](https://github.com/liblaf/ipkg/commit/120297cbccf29d92ce3c8fe67d9142d1dbfb371a))
+- use sub-command instead of importlib ([1d1bdb6](https://github.com/liblaf/ipkg/commit/1d1bdb63893a19577e83ec3dd85c4e8ca55ef7f1))
 
 ## 0.1.8 (2023-01-12)
 
