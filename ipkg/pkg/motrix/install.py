@@ -9,7 +9,7 @@ from .. import OPT
 from . import DOWNLOAD_URL, ICON_URL, NAME
 
 
-@click.command()
+@click.command(name=NAME)
 def main() -> None:
     exec: Path = OPT / NAME / (NAME + ".AppImage")
     download(url=DOWNLOAD_URL, output=exec)

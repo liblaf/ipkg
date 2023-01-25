@@ -11,7 +11,7 @@ from .. import DOWNLOADS, OPT
 from . import NAME, VERSION_TO_FILENAME
 
 
-@click.command()
+@click.command(name=NAME)
 @click.option(
     "-v",
     "--version",

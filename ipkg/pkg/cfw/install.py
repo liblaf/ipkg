@@ -13,7 +13,7 @@ from .. import DOWNLOADS, OPT
 from . import DOWNLOAD_URL, LOGO_URL, NAME, RELEASE_API
 
 
-@click.command()
+@click.command(name=NAME)
 def main(version: typing.Optional[str] = None) -> None:
     if not version:
         json = requests.get(url=RELEASE_API).json()

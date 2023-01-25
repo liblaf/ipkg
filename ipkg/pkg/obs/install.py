@@ -1,8 +1,10 @@
 import click
 from ishutils.common.run import run
 
+from . import NAME
 
-@click.command()
+
+@click.command(name=NAME)
 def main() -> None:
     run(args=["sudo", "add-apt-repository", "ppa:obsproject/obs-studio"])
     run(args=["sudo", "apt", "update"])

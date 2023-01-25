@@ -8,7 +8,7 @@ from ishutils.common.extract import extract
 from ishutils.common.run import run
 
 from .. import DOWNLOADS
-from . import FONT_DIR
+from . import FONT_DIR, NAME
 
 
 def install_meslolgs_nf(font_dir: str | Path) -> None:
@@ -49,10 +49,10 @@ def install_noto_sans_cjk_sc(font_dir: str | Path) -> None:
     extract(src=filepath, dst=font_dir / FONT_NAME)
 
 
-@click.command()
+@click.command(name=NAME)
 @click.option("--font-dir", type=click.Path(), default=FONT_DIR)
 def main(font_dir: str | Path) -> None:
     install_meslolgs_nf(font_dir=font_dir)
     install_fira_code(font_dir=font_dir)
-    install_noto_sans_cjk_sc(font_dir=font_dir)
+    # install_noto_sans_cjk_sc(font_dir=font_dir)
     run(args=["fc-cache", "--force"])

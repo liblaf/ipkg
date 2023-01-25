@@ -14,7 +14,7 @@ from . import (
 )
 
 
-@click.command()
+@click.command(name=NAME)
 def main() -> None:
     key_path = DOWNLOADS / KEY_NAME
     download(url=KEY_URL, output=key_path)

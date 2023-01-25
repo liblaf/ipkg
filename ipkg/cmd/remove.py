@@ -1,22 +1,21 @@
-import importlib
-
 import click
 
-from ..utils.text import module_name
+from ..pkg.android_studio.remove import main as android_studio
+from ..pkg.cfw.remove import main as cfw
+from ..pkg.conda.remove import main as conda
+from ..pkg.fonts.remove import main as fonts
+from ..pkg.motrix.remove import main as motrix
+from ..pkg.zotero.remove import main as zotero
 
 
-@click.command(name="remove")
-@click.pass_context
-@click.argument("pkg")
-@click.argument("args", nargs=-1)
-def main(ctx: click.Context, pkg: str, args: tuple[str]):
-    pkg_module_name = module_name(pkg)
-    module = importlib.import_module(name=f"ipkg.pkg.{pkg_module_name}.{ctx.info_name}")
-    cmd: click.Command = module.main
-    cmd.invoke(
-        cmd.make_context(
-            info_name=f"{ctx.info_name} {pkg} --",
-            args=list(args),
-            parent=ctx.parent,
-        )
-    )
+@click.group(name="remove")
+def main() -> None:
+    pass
+
+
+main.add_command(cmd=android_studio)
+main.add_command(cmd=cfw)
+main.add_command(cmd=conda)
+main.add_command(cmd=fonts)
+main.add_command(cmd=motrix)
+main.add_command(cmd=zotero)

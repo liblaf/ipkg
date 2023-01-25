@@ -6,7 +6,7 @@ from .. import DOWNLOADS, SHELL
 from . import KEY_PATH, KEY_URL, NAME, SOURCES_LIST, SOURCES_LIST_PATH
 
 
-@click.command()
+@click.command(name=NAME)
 def main() -> None:
     key_filename: str = NAME + ".asc"
     key_filepath = DOWNLOADS / key_filename

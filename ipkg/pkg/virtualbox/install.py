@@ -5,10 +5,10 @@ from ishutils.common.download import download
 from ishutils.common.run import run
 
 from .. import DOWNLOADS
-from . import KEY_NAME, KEY_URL
+from . import KEY_NAME, KEY_URL, NAME
 
 
-@click.command(help="https://www.virtualbox.org/wiki/Linux_Downloads")
+@click.command(name=NAME, help="https://www.virtualbox.org/wiki/Linux_Downloads")
 def main() -> None:
     key_path: Path = DOWNLOADS / KEY_NAME
     download(url=KEY_URL, output=key_path)

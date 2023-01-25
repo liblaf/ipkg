@@ -1,6 +1,6 @@
 from pathlib import Path
 
-NAME = "microsoft-edge-stable"
+NAME = "edge"
 BASE_URL = "https://packages.microsoft.com"
 KEY_NAME = "microsoft.asc"
 KEY_URL = f"{BASE_URL}/keys/{KEY_NAME}"

@@ -8,7 +8,7 @@ from .. import OPT
 from . import NAME
 
 
-@click.command()
+@click.command(name=NAME)
 def main() -> None:
     for path in DESKTOP_FILE_INSTALL_DIR.glob(pattern="*android-studio*"):
         remove(path=path)

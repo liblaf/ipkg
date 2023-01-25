@@ -11,7 +11,9 @@ from .. import BIN, DOWNLOADS
 from . import NAME
 
 
-@click.command(help="https://github.com/libthu/reserves-lib-tsinghua-downloader")
+@click.command(
+    name=NAME, help="https://github.com/libthu/reserves-lib-tsinghua-downloader"
+)
 def main():
     filename: str = "downloader-ubuntu-latest-py3.9.zip"
     filepath: Path = DOWNLOADS / filename

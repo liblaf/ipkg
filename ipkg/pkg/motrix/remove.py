@@ -6,7 +6,7 @@ from .. import OPT
 from . import NAME
 
 
-@click.command()
+@click.command(name=NAME)
 def main() -> None:
     remove(path=OPT / NAME)
     remove(path=DESKTOP_FILE_INSTALL_DIR / (NAME + ".desktop"))

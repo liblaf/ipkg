@@ -1,6 +1,7 @@
 import importlib.util
 import pkgutil
 from importlib.machinery import ModuleSpec
+from typing import Optional
 
 import click
 from rich import print
@@ -14,7 +15,7 @@ def get_list(spec: ModuleSpec) -> list[str]:
     names: set[str] = set()
     for module in pkgutil.iter_modules(path=spec.submodule_search_locations):
         names.add(package_name(mod_name=module.name))
-    return list(names)
+    return sorted(names)
 
 
 def get_tree(spec: ModuleSpec) -> Tree:
@@ -27,16 +28,19 @@ def get_tree(spec: ModuleSpec) -> Tree:
         if module.ispkg:
             sub_spec = importlib.util.find_spec(name=f"{spec.name}.{module.name}")
             assert sub_spec
-            tree.add(get_tree(spec=sub_spec))
+            sub_tree = get_tree(spec=sub_spec)
+            node = tree.add(sub_tree.label)
+            node.children = sub_tree.children
         else:
             tree.add(package_name(mod_name=module.name))
+    tree.children = sorted(tree.children, key=lambda t: str(t.label))
     return tree
 
 
 @click.command(name="list")
 @click.option("--tree", is_flag=True)
-@click.argument("pkg", required=False, default="")
-def main(tree: bool, pkg: str):
+@click.argument("pkg", required=False)
+def main(tree: bool, pkg: Optional[str]):
     if pkg:
         spec = importlib.util.find_spec(name=f"ipkg.pkg.{pkg}")
         if not spec:

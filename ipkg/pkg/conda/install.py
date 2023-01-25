@@ -6,13 +6,14 @@ from ishutils.common.download import download
 from ishutils.common.run import run
 
 from .. import DOWNLOADS, SHELL
-from . import DEFAULT_PREFIX, HELP_PREFIX
+from . import DEFAULT_PREFIX, HELP_PREFIX, NAME
 
 FILENAME = f"Miniconda3-latest-{platform.system()}-{platform.machine()}.sh"
 
 
 @click.command(
-    help="https://conda.io/projects/conda/en/latest/user-guide/install/macos.html"
+    name=NAME,
+    help="https://conda.io/projects/conda/en/latest/user-guide/install/macos.html",
 )
 @click.option(
     "-b",

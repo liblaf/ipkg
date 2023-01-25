@@ -5,9 +5,10 @@ import click
 from ishutils.common.run import run
 
 from ...utils.cache import export, open_cache
+from . import NAME
 
 
-@click.command()
+@click.command(name=NAME)
 @click.option(
     "--llvm-home",
     type=click.Path(exists=True, file_okay=False, dir_okay=True),

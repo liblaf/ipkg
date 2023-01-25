@@ -6,7 +6,7 @@ from .. import DOWNLOADS, SHELL
 from . import KEY_NAME, KEY_URL, NAME, SOURCES_LIST, SOURCES_LIST_PATH, TRUSTED_KEY_PATH
 
 
-@click.command()
+@click.command(name=NAME)
 def main() -> None:
     key_path = DOWNLOADS / KEY_NAME
     download(url=KEY_URL, output=key_path)
@@ -29,4 +29,4 @@ def main() -> None:
         ]
     )
     run(args=["sudo", "apt", "update"])
-    run(args=["sudo", "apt", "install", NAME])
+    run(args=["sudo", "apt", "install", "microsoft-edge-stable"])

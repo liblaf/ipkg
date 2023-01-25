@@ -12,10 +12,11 @@ from . import (
     HOMEBREW_BREW_GIT_REMOTE,
     HOMEBREW_BREW_INSTALL_GIT_REMOTE,
     HOMEBREW_CORE_GIT_REMOTE,
+    NAME,
 )
 
 
-@click.command()
+@click.command(name=NAME)
 def main():
     tmpdir: Path = Path(tempfile.mkdtemp())
     run(

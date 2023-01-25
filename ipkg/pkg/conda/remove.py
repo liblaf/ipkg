@@ -3,11 +3,12 @@ from pathlib import Path
 import click
 from ishutils.common.remove import remove
 
-from . import DEFAULT_PREFIX, HELP_PREFIX
+from . import DEFAULT_PREFIX, HELP_PREFIX, NAME
 
 
 @click.command(
-    help="https://conda.io/projects/conda/en/latest/user-guide/install/macos.html#uninstalling-anaconda-or-miniconda"
+    name=NAME,
+    help="https://conda.io/projects/conda/en/latest/user-guide/install/macos.html#uninstalling-anaconda-or-miniconda",
 )
 @click.option(
     "-p",

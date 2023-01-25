@@ -15,7 +15,7 @@ from .. import DOWNLOADS, OPT
 from . import DOWNLOAD_URL, NAME
 
 
-@click.command()
+@click.command(name=NAME)
 def main() -> None:
     query: dict[str, str] = {
         "channel": "release",

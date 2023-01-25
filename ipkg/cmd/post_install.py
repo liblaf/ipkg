@@ -1,22 +1,13 @@
-import importlib
-
 import click
 
-from ..utils.text import module_name
+from ..pkg.android_studio.post_install import main as android_studio
+from ..pkg.gh.post_install import main as gh
 
 
-@click.command(name="post-install")
-@click.pass_context
-@click.argument("pkg")
-@click.argument("args", nargs=-1)
-def main(ctx: click.Context, pkg: str, args: tuple[str]):
-    pkg_module_name: str = module_name(pkg)
-    module = importlib.import_module(name=f"ipkg.pkg.{pkg_module_name}.post_install")
-    cmd: click.Command = module.main
-    cmd.invoke(
-        cmd.make_context(
-            info_name=f"{ctx.info_name} {pkg} --",
-            args=list(args),
-            parent=ctx.parent,
-        )
-    )
+@click.group(name="post-install")
+def main() -> None:
+    pass
+
+
+main.add_command(cmd=android_studio)
+main.add_command(cmd=gh)

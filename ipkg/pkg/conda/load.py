@@ -3,10 +3,10 @@ from pathlib import Path
 import click
 
 from ...utils.cache import exec, open_cache
-from . import DEFAULT_PREFIX, HELP_PREFIX
+from . import DEFAULT_PREFIX, HELP_PREFIX, NAME
 
 
-@click.command()
+@click.command(name=NAME)
 @click.option(
     "-p",
     "--prefix",
